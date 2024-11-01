@@ -1,8 +1,8 @@
 "use client";
 import React from 'react'
 import { Bell, Link, Menu, Moon, Settings, Sun } from "lucide-react";
-import { useAppDispatch, useAppSelector } from '@/app/redux';
-import { setIsDarkMode, setIsSidebarCollapsed } from '@/state';
+import { useAppDispatch, useAppSelector } from '../../redux';
+import { setIsDarkMode, setIsSidebarCollapsed } from '../../../state';
 const Navbar = () => {
   const dispatch=useAppDispatch();
   const isDarkMode=useAppSelector((state)=>state.global.isDarkMode);
