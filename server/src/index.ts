@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
+import dashboardRoutes from "./routes/dashboardRoutes";   
 
 // Route Imports
 //  Configurations
@@ -17,9 +18,10 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(cors());
 
 // ROUTES
-app.get("/hello",(req,res)=>{
-    res.send("hello world");
-});
+// app.get("/hello",(req,res)=>{
+//     res.send("hello world");
+// });
+app.use("/dashboard",dashboardRoutes); //http://localhost:8000/dashboard
 const port =process.env.PORT|| 3001;
 app.listen(port,()=>{
     console.log(`Server running on port ${port}`);
