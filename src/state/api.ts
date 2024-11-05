@@ -64,7 +64,28 @@ export const api = createApi({
     getDashboardMetrics: build.query<DashboardMetrics, void>({
       query: () => "/dashboard",
       providesTags: ["DashboardMetrics"],
+      onQueryStarted: async (arg, { dispatch, getState, queryFulfilled }) => {
+        try {
+          const response = await queryFulfilled;
+          console.log("Dashboard Metrics Response:", response);
+        } catch (error: any) { // Keep using 'any' for now
+          console.error("Error fetching dashboard metrics:", error);
+          console.error("Error as JSON:", JSON.stringify(error)); // Log the entire error object as a string
+          if (error.status) {
+            console.error("Response status:", error.status); // Log status if available
+          }
+          if (error.data) {
+            console.error("Error data:", error.data); // Log error data if available
+          }
+          // Also log the error message if it's an instance of Error
+          if (error instanceof Error) {
+            console.error("Error message:", error.message);
+          }
+        }
+      },
     }),
+    
+    
     getProducts: build.query<Product[], string | void>({
       query: (search) => ({
         url: "/products",
