@@ -17,11 +17,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));   
 app.use(cors());
 
+
 // ROUTES
 // app.get("/hello",(req,res)=>{
 //     res.send("hello world");
 // });
-app.use("/dashboard",dashboardRoutes); //http://localhost:8000/dashboard
+app.use("/dashboard",dashboardRoutes); //http://localhost:800
 const port =process.env.PORT|| 3001;
 app.listen(port,()=>{
     console.log(`Server running on port ${port}`);
