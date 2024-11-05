@@ -5,6 +5,7 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import dashboardRoutes from "./routes/dashboardRoutes";   
+import productRoutes from "./routes/productRoutes"
 
 // Route Imports
 //  Configurations
@@ -22,8 +23,9 @@ app.use(cors());
 // app.get("/hello",(req,res)=>{
 //     res.send("hello world");
 // });
-app.use("/dashboard",dashboardRoutes); //http://localhost:800
-const port =process.env.PORT|| 3001;
+app.use("/dashboard",dashboardRoutes);
+app.use("/products",productRoutes) //http://localhost:8000/dashboard
+const port =process.env.PORT|| 3001;//http://localhost:8000/product
 app.listen(port,()=>{
     console.log(`Server running on port ${port}`);
 
