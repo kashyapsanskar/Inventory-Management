@@ -26,6 +26,9 @@
     "redux-persist": "^6.0.0",
     "uuid": "^11.0.2"
   },
+  "overrides": {
+    "react-is": "^19.0.0-beta-26f2496093-20240514"
+  },
   "devDependencies": {
     "@types/node": "^20.17.2",
     "@types/numeral": "^2.0.5",
