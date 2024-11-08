@@ -1,51 +1,186 @@
+// "use client";
+
+// import { useAppDispatch, useAppSelector } from "../../redux";
+// import { setIsSidebarCollapsed } from "../../../state";
+// import { Archive, CircleDollarSign, Layout, LucideIcon, Menu, SlidersHorizontal, User ,Clipboard} from "lucide-react";
+// import Link from "next/link";
+// import { usePathname } from "next/navigation";
+// import React from "react";
+// interface SidebarLinkprops{
+//     href:string;
+//     icon:LucideIcon;
+//     label:string;
+//     isCollapsed:boolean;
+// } 
+// const SidebarLink=({
+//     href,
+//     icon:Icon,
+//     label,
+//     isCollapsed
+// }:SidebarLinkprops)=>{
+//     const pathname=usePathname();
+//     const isActive=pathname=== href||(pathname==="/" && href=="/dashboard");
+//     return (
+//         <Link href={href}>
+
+//             <div className={`cursor-pointer flex-items-center $ {
+//                 isCollapsed ? "justify-center py-4" : "justify-start px-8 py-4"
+//             }
+//             hover:text-blue-500 hover:bg-blue-100 gap-3 transition-colors ${
+//                 isActive ? "bg-blue-200 text-white":""
+//             }
+               
+//             }`}
+//             >
+//              <Icon className="w-6 h-6 !text-gray-700" />
+
+// <span
+//   className={`${
+//     isCollapsed ? "hidden" : "block"
+//   } font-medium text-gray-700`}
+// >
+//   {label}
+// </span>
+// </div>
+// </Link>
+// );
+// };
+
+
+// const Sidebar = () => {
+//   const dispatch = useAppDispatch();
+//   const isSidebarCollapsed = useAppSelector((state) => state.global.isSidebarCollapsed);
+
+//   const toggleSidebar = () => {
+//     dispatch(setIsSidebarCollapsed(!isSidebarCollapsed));
+//   };
+
+//   const sidebarClassNames = `fixed flex flex-col ${
+//     isSidebarCollapsed ? "w-0 md:w-16" : "w-72 md:w-64"
+//   } bg-white transition-all duration-300 overflow-hidden h-full shadow-md z-40`;
+
+//   return (
+//     <div className={sidebarClassNames}>
+//       {/* Top logo and title */}
+//       <div className={`flex gap-3 justify-between md:justify-start items-center pt-8 ${isSidebarCollapsed ? "px-5" : "px-8"}`}>
+//         <div>logo</div>
+//         <h1 className={`${isSidebarCollapsed? "hidden":"block"} font-extrabold text-2xl`}>Inventory</h1>
+//         <button
+//           className="md:hidden px-3 py-3 bg-gray-100 rounded-full hover:bg-blue-100"
+//           onClick={toggleSidebar}  // Fix applied here
+//         >
+//           <Menu className="w-4 h-4" />
+//         </button>
+//       </div>
+
+//       {/* Links or content in the middle */}
+//       <div className="flex-grow mt-8">
+//         <SidebarLink
+//           href="/dashboard"
+//           icon={Layout}
+//           label="Dashboard"
+//           isCollapsed={isSidebarCollapsed}
+//         />
+//         <SidebarLink
+//           href="/inventory"
+//           icon={Archive}
+//           label="Inventory"
+//           isCollapsed={isSidebarCollapsed}
+//         />
+//         <SidebarLink
+//           href="/products"
+//           icon={Clipboard}
+//           label="Products"
+//           isCollapsed={isSidebarCollapsed}
+//         />
+//         <SidebarLink
+//           href="/users"
+//           icon={User}
+//           label="Users"
+//           isCollapsed={isSidebarCollapsed}
+//         />
+//         <SidebarLink
+//           href="/settings"
+//           icon={SlidersHorizontal}
+//           label="Settings"
+//           isCollapsed={isSidebarCollapsed}
+//         />
+//         <SidebarLink
+//           href="/expenses"
+//           icon={CircleDollarSign}
+//           label="Expenses"
+//           isCollapsed={isSidebarCollapsed}
+//         />
+//       </div>
+
+//       {/* Footer */}
+//       <div className={`${isSidebarCollapsed ? "hidden" : "block"} mb-10`}>
+//         <p className="text-center text-xs text-gray-500">&copy; 2024 Edstock</p>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Sidebar;
+
 "use client";
 
 import { useAppDispatch, useAppSelector } from "../../redux";
 import { setIsSidebarCollapsed } from "../../../state";
-import { Archive, CircleDollarSign, Layout, LucideIcon, Menu, SlidersHorizontal, User ,Clipboard} from "lucide-react";
+import { Archive, CircleDollarSign, Layout, LucideIcon, Menu, SlidersHorizontal, User, Clipboard } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
-interface SidebarLinkprops{
-    href:string;
-    icon:LucideIcon;
-    label:string;
-    isCollapsed:boolean;
-} 
-const SidebarLink=({
-    href,
-    icon:Icon,
-    label,
-    isCollapsed
-}:SidebarLinkprops)=>{
-    const pathname=usePathname();
-    const isActive=pathname=== href||(pathname==="/" && href=="/dashboard");
-    return (
-        <Link href={href}>
 
-            <div className={`cursor-pointer flex-items-center $ {
-                isCollapsed ? "justify-center py-4" : "justify-start px-8 py-4"
-            }
-            hover:text-blue-500 hover:bg-blue-100 gap-3 transition-colors ${
-                isActive ? "bg-blue-200 text-white":""
-            }
-               
-            }`}
-            >
-             <Icon className="w-6 h-6 !text-gray-700" />
+interface SidebarLinkProps {
+  href: string;
+  icon: LucideIcon;
+  label: string;
+  isCollapsed: boolean;
+}
 
-<span
-  className={`${
-    isCollapsed ? "hidden" : "block"
-  } font-medium text-gray-700`}
->
-  {label}
-</span>
-</div>
-</Link>
-);
+const SidebarLink = ({ href, icon: Icon, label, isCollapsed }: SidebarLinkProps) => {
+  const pathname = usePathname();
+  const isActive = pathname === href;
+
+  const handleClick = () => {
+    if (label === "Dashboard") {
+      // Redirect to external URL
+      window.location.href = "http://localhost:3001";
+    }
+  };
+
+  return label === "Dashboard" ? (
+    <div
+      onClick={handleClick}
+      className={`cursor-pointer flex items-center ${
+        isCollapsed ? "justify-center py-4" : "justify-start px-8 py-4"
+      } hover:text-blue-500 hover:bg-blue-100 gap-3 transition-colors ${
+        isActive ? "bg-blue-200 text-white" : ""
+      }`}
+    >
+      <Icon className="w-6 h-6 !text-gray-700" />
+      <span className={`${isCollapsed ? "hidden" : "block"} font-medium text-gray-700`}>
+        {label}
+      </span>
+    </div>
+  ) : (
+    <Link href={href}>
+      <div
+        className={`cursor-pointer flex items-center ${
+          isCollapsed ? "justify-center py-4" : "justify-start px-8 py-4"
+        } hover:text-blue-500 hover:bg-blue-100 gap-3 transition-colors ${
+          isActive ? "bg-blue-200 text-white" : ""
+        }`}
+      >
+        <Icon className="w-6 h-6 !text-gray-700" />
+        <span className={`${isCollapsed ? "hidden" : "block"} font-medium text-gray-700`}>
+          {label}
+        </span>
+      </div>
+    </Link>
+  );
 };
-
 
 const Sidebar = () => {
   const dispatch = useAppDispatch();
@@ -62,12 +197,18 @@ const Sidebar = () => {
   return (
     <div className={sidebarClassNames}>
       {/* Top logo and title */}
-      <div className={`flex gap-3 justify-between md:justify-start items-center pt-8 ${isSidebarCollapsed ? "px-5" : "px-8"}`}>
+      <div
+        className={`flex gap-3 justify-between md:justify-start items-center pt-8 ${
+          isSidebarCollapsed ? "px-5" : "px-8"
+        }`}
+      >
         <div>logo</div>
-        <h1 className={`${isSidebarCollapsed? "hidden":"block"} font-extrabold text-2xl`}>Inventory</h1>
+        <h1 className={`${isSidebarCollapsed ? "hidden" : "block"} font-extrabold text-2xl`}>
+          Inventory
+        </h1>
         <button
           className="md:hidden px-3 py-3 bg-gray-100 rounded-full hover:bg-blue-100"
-          onClick={toggleSidebar}  // Fix applied here
+          onClick={toggleSidebar}
         >
           <Menu className="w-4 h-4" />
         </button>
@@ -75,42 +216,12 @@ const Sidebar = () => {
 
       {/* Links or content in the middle */}
       <div className="flex-grow mt-8">
-        <SidebarLink
-          href="/dashboard"
-          icon={Layout}
-          label="Dashboard"
-          isCollapsed={isSidebarCollapsed}
-        />
-        <SidebarLink
-          href="/inventory"
-          icon={Archive}
-          label="Inventory"
-          isCollapsed={isSidebarCollapsed}
-        />
-        <SidebarLink
-          href="/products"
-          icon={Clipboard}
-          label="Products"
-          isCollapsed={isSidebarCollapsed}
-        />
-        <SidebarLink
-          href="/users"
-          icon={User}
-          label="Users"
-          isCollapsed={isSidebarCollapsed}
-        />
-        <SidebarLink
-          href="/settings"
-          icon={SlidersHorizontal}
-          label="Settings"
-          isCollapsed={isSidebarCollapsed}
-        />
-        <SidebarLink
-          href="/expenses"
-          icon={CircleDollarSign}
-          label="Expenses"
-          isCollapsed={isSidebarCollapsed}
-        />
+        <SidebarLink href="/dashboard" icon={Layout} label="Dashboard" isCollapsed={isSidebarCollapsed} />
+        <SidebarLink href="/inventory" icon={Archive} label="Inventory" isCollapsed={isSidebarCollapsed} />
+        <SidebarLink href="/products" icon={Clipboard} label="Products" isCollapsed={isSidebarCollapsed} />
+        <SidebarLink href="/users" icon={User} label="Users" isCollapsed={isSidebarCollapsed} />
+        <SidebarLink href="/settings" icon={SlidersHorizontal} label="Settings" isCollapsed={isSidebarCollapsed} />
+        <SidebarLink href="/expenses" icon={CircleDollarSign} label="Expenses" isCollapsed={isSidebarCollapsed} />
       </div>
 
       {/* Footer */}
@@ -122,3 +233,4 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
+

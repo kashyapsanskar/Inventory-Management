@@ -22,10 +22,10 @@ const Dashboard = () => {
       <CardPurchaseSummary/>
       <CardExpenseSummary/>
       {/* <StatCard/> */}
-      <div className="row-span-3 bg-gray-500"/>
+      {/* <div className="row-span-3 bg-gray-500"/>
       <div className="row-span-3 xl:row-span-6 bg-gray-500"/>
       <div className="row-span-3 xl:row-span-6 bg-gray-500"/>
-      <div className="row-span-3 xl:row-span-3 col-span-1 md:col-span-2 xl:col-span-1 bg-gray-500"/>
+      <div className="row-span-3 xl:row-span-3 col-span-1 md:col-span-2 xl:col-span-1 bg-gray-500"/> */}
 <StatCard
         title="Customer & Expenses"
         primaryIcon={<Package className="text-blue-600 w-6 h-6" />}
