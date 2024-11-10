@@ -30,8 +30,11 @@ applications:
           commands:
             - echo "Installing backend dependencies..."
             - cd server && npm ci
+            - echo "Checking if Prisma Client is installed..."
+            - ls -la server/node_modules/@prisma
             - echo "Generating Prisma Client..."
             - cd server && npx prisma generate
+
         build:
           commands:
             - echo "Compiling TypeScript..."
