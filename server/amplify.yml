@@ -1,0 +1,38 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        # Install frontend dependencies
+        - npm ci --cache .npm --prefer-offline
+    build:
+      commands:
+        # Build the frontend (Assuming Next.js in root folder)
+        - npm run build
+  artifacts:
+    # Base directory for frontend build artifacts (Next.js outputs to .next)
+    baseDirectory: .next
+    files:
+      - "**/*"
+  cache:
+    paths:
+      # Cache the Next.js build folder and node modules
+      - .next/cache/**/*
+      - .npm/**/*
+
+backend:
+  phases:
+    preBuild:
+      commands:
+        # Navigate to the 'server' folder and install backend dependencies
+        - cd server
+        - npm ci --cache .npm --prefer-offline
+    build:
+      commands:
+        # Build the backend (you might have a custom build command here)
+        - cd server
+        - npm run build
+  cache:
+    paths:
+      # Cache backend node_modules
+      - server/node_modules/**/*
