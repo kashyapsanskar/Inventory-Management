@@ -52,4 +52,5 @@ applications:
 
 env:
   variables:
+    NODE_VERSION: "16"
     NEXT_PUBLIC_API_BASE_URL: http://3.111.218.29
