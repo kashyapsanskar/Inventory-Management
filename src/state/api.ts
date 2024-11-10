@@ -1,4 +1,4 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { FetchBaseQueryError, createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export interface Product {
   productId: string;
@@ -61,6 +61,14 @@ export interface User {
 //   message?: string;
 // };
 
+function isFetchBaseQueryError(error: unknown): error is FetchBaseQueryError {
+  return (
+    typeof error === 'object' &&
+    error !== null &&
+    'status' in error &&
+    'data' in error
+  );
+}
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL }),
@@ -70,22 +78,25 @@ export const api = createApi({
     getDashboardMetrics: build.query<DashboardMetrics, void>({
       query: () => "/dashboard",
       providesTags: ["DashboardMetrics"],
-      onQueryStarted: async (arg, { dispatch, getState, queryFulfilled }) => {
+      onQueryStarted: async (arg, { queryFulfilled }) => {
         try {
           const response = await queryFulfilled;
           console.log("Dashboard Metrics Response:", response);
-        } catch (error: any) { // Keep using 'any' for now
+        } catch (error: unknown) {
           console.error("Error fetching dashboard metrics:", error);
-          console.error("Error as JSON:", JSON.stringify(error)); // Log the entire error object as a string
-          if (error.status) {
-            console.error("Response status:", error.status); // Log status if available
-          }
-          if (error.data) {
-            console.error("Error data:", error.data); // Log error data if available
-          }
-          // Also log the error message if it's an instance of Error
-          if (error instanceof Error) {
+          console.error("Error as JSON:", JSON.stringify(error));
+      
+          // Type-check the error before accessing its properties
+          if (isFetchBaseQueryError(error)) {
+            // If the error is an instance of FetchBaseQueryError, access its properties safely
+            console.error("Response status:", error.status);
+            console.error("Error data:", error.data);
+          } else if (error instanceof Error) {
+            // If it's a regular Error instance, log the error message
             console.error("Error message:", error.message);
+          } else {
+            // Log if the error is of unknown type
+            console.error("Unexpected error type:", error);
           }
         }
       },
