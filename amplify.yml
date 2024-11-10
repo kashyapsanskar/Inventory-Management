@@ -1,24 +1,24 @@
 version: 1
 
 applications:
-  - appRoot: .  # Frontend root directory (root of the project)
+  - appRoot: .  # Frontend root directory
     frontend:
       phases:
         preBuild:
           commands:
-            - echo Installing frontend dependencies...
-            - npm ci  # Install frontend dependencies using npm ci
+            - echo "Installing frontend dependencies..."
+            - npm ci
         build:
           commands:
-            - echo Building frontend...
+            - echo "Building frontend..."
             - npm run build  # Ensure this is the correct build command for Next.js
         postBuild:
           commands:
-            - echo Frontend deployed successfully
+            - echo "Frontend deployed successfully"
       artifacts:
         files:
           - '**/*'
-        baseDirectory: .next  # Next.js build output folder
+        baseDirectory: .next  # Output folder for Next.js build
       cache:
         paths:
           - 'node_modules/**/*'
@@ -28,22 +28,22 @@ applications:
       phases:
         preBuild:
           commands:
-            - echo Installing backend dependencies...
-            - cd server && npm ci  # Install backend dependencies in the server folder
+            - echo "Installing backend dependencies..."
+            - cd server && npm ci
         build:
           commands:
-           - echo "Generating Prisma Client..."
+            - echo "Generating Prisma Client..."
             - cd server && npx prisma generate  # Generate Prisma Client
             - echo "Compiling TypeScript..."
             - cd server && npx tsc --noEmit  # Type-checking only
             - echo "Backend build and Prisma Client generation complete"
       artifacts:
         files:
-          - '**/*'  # Include all backend files
+          - '**/*'  # Include backend files
       cache:
         paths:
-          - 'server/node_modules/**/*'  # Cache backend dependencies
+          - 'server/node_modules/**/*'  # Cache server dependencies
 
 env:
   variables:
-    NEXT_PUBLIC_API_BASE_URL: http://3.111.218.29  # Your EC2 backend URL
+    NEXT_PUBLIC_API_BASE_URL: http://3.111.218.29
