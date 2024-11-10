@@ -30,13 +30,17 @@ applications:
           commands:
             - echo "Installing backend dependencies..."
             - cd server && npm ci
+            - echo "Generating Prisma Client..."
+            - cd server && npx prisma generate 
         build:
           commands:
-            - echo "Generating Prisma Client..."
-            - cd server && npx prisma generate  # Generate Prisma Client
+           
             - echo "Compiling TypeScript..."
             - cd server && npx tsc --noEmit  # Type-checking only
             - echo "Backend build and Prisma Client generation complete"
+            postBuild:
+             commands:
+               - echo "Backend deployed successfully"
       artifacts:
         files:
           - '**/*'  # Include backend files
