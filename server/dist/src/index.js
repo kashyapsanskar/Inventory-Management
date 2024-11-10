@@ -28,9 +28,10 @@ app.use((0, cors_1.default)());
 // });
 app.use("/dashboard", dashboardRoutes_1.default);
 app.use("/products", productRoutes_1.default); //http://localhost:8000/dashboard
-const port = process.env.PORT || 3001; //http://localhost:8000/product
+const port = Number(process.env.PORT) || 3001; //http://localhost:8000/product
 app.use("/users", userRoutes_1.default); // http://localhost:8000/users
 app.use("/expenses", expenseRoutes_1.default); // http://localhost:8000/expenses
-app.listen(port, () => {
+app.listen(port, "0.0.0.0", () => {
     console.log(`Server running on port ${port}`);
 });
+// o
