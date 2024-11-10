@@ -32,11 +32,11 @@ applications:
             - cd server && npm ci  # Install backend dependencies in the server folder
         build:
           commands:
-            - echo Generating Prisma Client...
-            - cd server && npx prisma generate  # Generate Prisma Client in the backend
-            - echo Checking TypeScript types...
-            - cd server && npx tsc --noEmit  # Check TypeScript types without emitting output
-            - echo Backend build and Prisma Client generation complete
+           - echo "Generating Prisma Client..."
+            - cd server && npx prisma generate  # Generate Prisma Client
+            - echo "Compiling TypeScript..."
+            - cd server && npx tsc --noEmit  # Type-checking only
+            - echo "Backend build and Prisma Client generation complete"
       artifacts:
         files:
           - '**/*'  # Include all backend files
