@@ -55,6 +55,12 @@ export interface User {
   name: string;
   email: string;
 }
+// type FetchError = {
+//   status?: number;
+//   data?: any;
+//   message?: string;
+// };
+
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL }),
