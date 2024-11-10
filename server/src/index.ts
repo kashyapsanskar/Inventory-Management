@@ -28,10 +28,10 @@ app.use(cors());
 // });
 app.use("/dashboard",dashboardRoutes);
 app.use("/products",productRoutes) //http://localhost:8000/dashboard
-const port =process.env.PORT|| 3001;//http://localhost:8000/product
+const port =Number(process.env.PORT)|| 3001;//http://localhost:8000/product
 app.use("/users", userRoutes); // http://localhost:8000/users
 app.use("/expenses", expenseRoutes); // http://localhost:8000/expenses
-app.listen(port,()=>{
+app.listen(port,"0.0.0.0",()=>{
     console.log(`Server running on port ${port}`);
 
 });
