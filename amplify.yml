@@ -34,7 +34,9 @@ applications:
           commands:
             - echo Generating Prisma Client...
             - cd server && npx prisma generate  # Generate Prisma Client in the backend
-            - echo Backend deployed successfully
+            - echo Checking TypeScript types...
+            - cd server && npx tsc --noEmit  # Check TypeScript types without emitting output
+            - echo Backend build and Prisma Client generation complete
       artifacts:
         files:
           - '**/*'  # Include all backend files
