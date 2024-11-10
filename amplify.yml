@@ -1,17 +1,17 @@
-version: 0.2
+version: 1
 
 applications:
-  - appRoot: .  # This is the frontend's root directory. Here, '.' points to the root of your project
+  - appRoot: .  # Frontend root directory (root of the project)
     frontend:
       phases:
         preBuild:
           commands:
             - echo Installing frontend dependencies...
-            - npm ci
+            - npm ci  # Install frontend dependencies using npm ci
         build:
           commands:
             - echo Building frontend...
-            - npm run build  # Make sure this is the correct build command for Next.js
+            - npm run build  # Ensure this is the correct build command for Next.js
         postBuild:
           commands:
             - echo Frontend deployed successfully
@@ -23,22 +23,24 @@ applications:
         paths:
           - 'node_modules/**/*'
 
-  - appRoot: server  # This is the backend directory
+  - appRoot: server  # Backend root directory
     backend:
       phases:
         preBuild:
           commands:
             - echo Installing backend dependencies...
-            - cd server && npm ci  # Ensure the correct path to the server folder
+            - cd server && npm ci  # Install backend dependencies in the server folder
         build:
           commands:
+            - echo Generating Prisma Client...
+            - cd server && npx prisma generate  # Generate Prisma Client in the backend
             - echo Backend deployed successfully
       artifacts:
         files:
-          - '**/*'  # Include all backend files if needed
+          - '**/*'  # Include all backend files
       cache:
         paths:
-          - 'server/node_modules/**/*'
+          - 'server/node_modules/**/*'  # Cache backend dependencies
 
 env:
   variables:
