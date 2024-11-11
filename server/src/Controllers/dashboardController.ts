@@ -40,12 +40,23 @@ export const getDashboardMetrics = async (
         },
       }
     );
-    const expenseByCategorySummary = expenseByCategorySummaryRaw.map(
-      (item) => ({
-        ...item,
-        amount: item.amount.toString(),
-      })
-    );
+    // const expenseByCategorySummary = expenseByCategorySummaryRaw.map(
+    //   (item:ExpenseItem) => ({
+    //     ...item,
+    //     amount: item.amount.toString(),
+    //   })
+    // );
+    const expenseByCategorySummary = expenseByCategorySummaryRaw.map((item: unknown) => {
+        if (typeof item === 'object' && item !== null && 'amount' in item) {
+          const itemTyped = item as { amount: { toString: () => string } };
+          return {
+            ...itemTyped,
+            amount: itemTyped.amount.toString()
+          };
+        }
+        // Handle case where item does not match expected structure
+        return item;
+      });
 
     res.json({
       popularProducts,

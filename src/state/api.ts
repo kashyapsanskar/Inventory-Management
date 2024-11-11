@@ -60,6 +60,11 @@ export interface User {
 //   data?: any;
 //   message?: string;
 // };
+export interface ExpenseItem {
+  category: string;
+  amount: number;
+}
+
 
 function isFetchBaseQueryError(error: unknown): error is FetchBaseQueryError {
   return (
