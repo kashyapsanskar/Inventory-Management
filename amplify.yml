@@ -53,4 +53,4 @@ applications:
 env:
   variables:
     NODE_VERSION: "16"
-    NEXT_PUBLIC_API_BASE_URL: https://45abg15q34.execute-api.ap-south-1.amazonaws.com/prod
+    NEXT_PUBLIC_API_BASE_URL: http://3.111.218.29
