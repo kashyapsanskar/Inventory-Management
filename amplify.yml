@@ -12,14 +12,13 @@ applications:
           commands:
             - echo "Building frontend..."
             - npm run build
-            - npm run export  # Add this if using static export
         postBuild:
           commands:
             - echo "Frontend deployed successfully"
       artifacts:
         files:
           - '**/*'
-        baseDirectory: out  # or .next, depending on your setup
+        baseDirectory: .next
       cache:
         paths:
           - 'node_modules/**/*'
@@ -54,4 +53,4 @@ applications:
 env:
   variables:
     NODE_VERSION: "16"
-    NEXT_PUBLIC_API_BASE_URL: http://3.111.218.29  # Make sure the API is publicly accessible
+    NEXT_PUBLIC_API_BASE_URL: https://45abg15q34.execute-api.ap-south-1.amazonaws.com/prod
