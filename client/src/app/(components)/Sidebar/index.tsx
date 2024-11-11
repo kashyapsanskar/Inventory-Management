@@ -146,7 +146,8 @@ const SidebarLink = ({ href, icon: Icon, label, isCollapsed }: SidebarLinkProps)
   const handleClick = () => {
     if (label === "Dashboard") {
       // Redirect to external URL
-      window.location.href = "http://localhost:3001";
+      const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3001";
+      window.location.href = `${baseUrl}/dashboard`;
     }
   };
 
