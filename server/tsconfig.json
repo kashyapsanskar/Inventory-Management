@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "types": ["node", "@prisma/client"],
+    "types": ["node", "@prisma/client","express"],
     "target": "es2016",
     "module": "nodenext",
     "moduleResolution": "nodenext",
