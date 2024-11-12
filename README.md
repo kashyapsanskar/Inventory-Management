@@ -1,8 +1,12 @@
 # 📊 **Full-Stack Inventory Management Dashboard** 🛠️
 
+
+
 ### An intuitive **Inventory Management Dashboard** designed for businesses to manage products, users, expenses, and track key metrics through a seamless web interface. Built with modern technologies to provide a comprehensive solution for inventory tracking and management.
 
 ---
+**🚀 Deployed Website** : https://main.dfboef0sn467x.amplifyapp.com/
+
 
 ## 🚀 **Features**
 
@@ -87,6 +91,12 @@ Make sure you have the following installed on your machine:
    npm run dev
    ```
 5. **Open your browser and navigate to http://localhost:3000 to access the application**
+
+**Additional Resources**
+
+1. [Data Model Diagram](https://drawsql.app/teams/sanskar-kashyap/diagrams/copy-of-56-inventorymanagement)
+
+
 
 
 
