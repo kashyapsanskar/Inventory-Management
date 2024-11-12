@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📊 **Full-Stack Inventory Management Dashboard** 🛠️
 
-## Getting Started
+### An intuitive **Inventory Management Dashboard** designed for businesses to manage products, users, expenses, and track key metrics through a seamless web interface. Built with modern technologies to provide a comprehensive solution for inventory tracking and management.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 **Features**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### **Dashboard**
+- Overview of key inventory and user metrics for quick access.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### **Inventory Management**
+- **Add**, **remove**, and manage inventory items effortlessly.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### **Product Management**
+- Track products with details such as **price**, **quantity**, and **category**.
 
-## Learn More
+### **User Management**
+- Manage **users**, assign **roles**, and monitor **activities**.
 
-To learn more about Next.js, take a look at the following resources:
+### **Expenses**
+- Track and manage business **expenses**.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### **Responsive Design**
+- **Desktop** and **mobile** friendly interface for seamless access.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### **Role-Based Access Control (RBAC)**
+- Manage user **permissions** and **roles** for controlled access.
 
-## Deploy on Vercel
+### **Dark/Light Mode**
+- Choose between **dark** and **light** themes for a personalized experience.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🛠️ **Tech Stack**
+
+### **Frontend:**
+- **React.js** with **Next.js** (for **Server-Side Rendering (SSR)**)
+- **Tailwind CSS** (for styling)
+- **Redux Toolkit** (for state management)
+- **Lucide Icons** (for beautiful icons)
+- **Next.js Image Optimization** (for fast image rendering)
+- **Material UI** (for UI components)
+
+### **Backend:**
+- **Node.js** with **Express.js**
+- **Prisma** (ORM for seamless database interactions)
+- **PostgreSQL** (relational database)
+
+### **Authentication:**
+- **Clerk Authentication** for user authentication and management.
+
+### **Hosting:**
+- **AWS Amplify** for deploying and hosting the entire application.
+
+### **Deployment:**
+- Deployed on **AWS Amplify** (frontend & backend)
+- **CI/CD Pipeline** for **automatic deployments** on code changes.
+
+---
+
+## 📦 **Installation**
+
+### **Prerequisites**
+Make sure you have the following installed on your machine:
+- **Node.js** (v16 or above)
+- **npm** (v8 or above) or **yarn** (v1.22 or above)
+- **PostgreSQL** (if running locally)
+
+### **Steps to Run the Project Locally:**
+
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/your-username/inventory-dashboard.git
+   cd inventory-dashboard
+   ```
+2. **Install Dependencies**: Using npm:
+   ```bash
+   npm install
+   ```
+3. **Set up PostgreSQL**:
+   Make sure you have PostgreSQL installed and running locally.
+   Set up the database and configure environment variables (e.g., DATABASE_URL).
+
+4. **Run the Development Server:**
+   ```bash
+   npm run dev
+   ```
+5. **Open your browser and navigate to http://localhost:3000 to access the application**
+
+
+
+
+
